@@ -40,4 +40,4 @@
 - [ ] Press esc to go back to splash screen (restart)
 
 ### Progress
-9 / 22 (41% Done)
+20 / 22 (90% Done)
