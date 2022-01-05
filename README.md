@@ -20,7 +20,7 @@
 - [x] Locked / Door Tile (Green and Yellow, checks for key in inventory to open)
 - [x] Element Tile (Fire and Water)
 - [x] Thief Tile (reset to start point, discard all inventory)
-- [ ] Slide Tile (pushes the player in that direction, not moving)
+- [x] Slide Tile (pushes the player in that direction, not moving)
 - [x] Exit Tile
 
 

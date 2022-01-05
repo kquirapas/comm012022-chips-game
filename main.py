@@ -161,16 +161,28 @@ def main():
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_w:
                     if checkNextTile(player, mapholder, maplist, UP):
-                        player.location = player.moveUp(player, mapholder)
+                        if (player.under in SLIDES):
+                            SMOVE[player.under](player, mapholder)
+                        else:
+                            player.location = player.moveUp(player, mapholder)
                 elif event.key == pygame.K_a:
                     if checkNextTile(player, mapholder, maplist, LEFT):
-                        player.location = player.moveLeft(player, mapholder)
+                        if (player.under in SLIDES):
+                            SMOVE[player.under](player, mapholder)
+                        else:
+                            player.location = player.moveLeft(player, mapholder)
                 elif event.key == pygame.K_s:
                     if checkNextTile(player, mapholder, maplist, DOWN):
-                        player.location = player.moveDown(player, mapholder)
+                        if (player.under in SLIDES):
+                            SMOVE[player.under](player, mapholder)
+                        else:
+                            player.location = player.moveDown(player, mapholder)
                 elif event.key == pygame.K_d:
                     if checkNextTile(player, mapholder, maplist, RIGHT):
-                        player.location = player.moveRight(player, mapholder)
+                        if (player.under in SLIDES):
+                            SMOVE[player.under](player, mapholder)
+                        else:
+                            player.location = player.moveRight(player, mapholder)
 
 
         # add standard game bg color
@@ -278,12 +290,16 @@ def checkNextTile(pPlayer, pMap, pMapList, pDir):
         else:
             return False
     elif next_tile in SLIDES:
-        while next_tile in SLIDES:
-            print("before player location: ", pPlayer.location)
-            pPlayer.relocate(SMOVE[next_tile](pPlayer, pMap))
-            print("after player location: ", pPlayer.location)
-            next_tile = pMap.map[pPlayer.location[1] + SDIR[next_tile][1]][pPlayer.location[0] + SDIR[next_tile][0]]
-        return True
+        if pDir == UP:
+            pPlayer.relocate(pPlayer.moveUp(pPlayer, pMap))
+        elif pDir == DOWN:
+            pPlayer.relocate(pPlayer.moveDown(pPlayer, pMap))
+        elif pDir == LEFT:
+            pPlayer.relocate(pPlayer.moveLeft(pPlayer, pMap))
+        else:
+            pPlayer.relocate(pPlayer.moveRight(pPlayer, pMap))
+
+        return checkNextTile(pPlayer, pMap, pMapList, SDIR[next_tile])
     else:
         return True
 
