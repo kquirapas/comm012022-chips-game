@@ -37,7 +37,8 @@
 
 ### Bonus
 - [ ] Sound design (bg music and sfx)
-- [ ] Press esc to go back to splash screen (restart)
+- [ ] Retro Graphics
+- [ ] Map View Functionality
 
 ### Progress
-20 / 22 (90% Done)
+18 / 20 (90% Done)
