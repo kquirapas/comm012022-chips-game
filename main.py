@@ -109,7 +109,7 @@ def main():
     allmaps = [map0, map1, map2, map3]
     maplist = [map0, map1, map2, map3]
 
-    # always start from start map
+    # MAP 0 starting map
     mapholder = Map("holder", "")
     mapholder.swap(player, map0.name, map0.filepath)
     mapholder.load(player)
@@ -285,7 +285,7 @@ def main():
                     restartLevel(player, mapholder, overlay)
                 elif event.key == pygame.K_ESCAPE:
                     restartGame(player, mapholder, map0, overlay)
-                elif event.key == pygame.K_SPACE and player.clear:
+                elif event.key == pygame.K_SPACE and player.clear and maplist:
                     player.clear = False
                     overlay.hideOverlay()
                     nextLevel(player, mapholder, maplist, overlay)
@@ -444,7 +444,7 @@ def checkNextTile(pPlayer, pMap, pMapList, pDir, pOverlay, pSfx):
             pPlayer.removeItem(YELLOWKEY)
             return True
         elif next_tile == CHIPDOOR:
-            if pMap.chips == pPlayer.chips:
+            if pMap.chips <= pPlayer.chips:
                 pSfx.playSound("unlockchip")
 
                 return True
@@ -583,9 +583,12 @@ def nextLevel(pPlayer, pMap, pMapList, pOverlay):
     del pMapList[index]
 
     # randomly choose from available maps
-    choice = random.choice(pMapList)
-    pMap.swap(pPlayer, choice.name, choice.filepath)
-    restartLevel(pPlayer, pMap, pOverlay)
+    if pMapList:
+        choice = random.choice(pMapList)
+        pMap.swap(pPlayer, choice.name, choice.filepath)
+        restartLevel(pPlayer, pMap, pOverlay)
+    else:
+        win(pPlayer, pMap, pMapList, pOverlay)
 
 def lose(pOverlay):
     '''
@@ -617,7 +620,7 @@ def win(pPlayer, pMap, pMapList, pOverlay):
     '''
 
     # display win in overlay
-    if not pMapList:
+    if len(pMapList) == 0:
         pOverlay.showOverlay()
         pOverlay.changeMessage("You won! All levels completed!")
     else:
