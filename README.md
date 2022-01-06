@@ -36,9 +36,9 @@
 - [x] Move with WASD across map
 
 ### Bonus
-- [ ] Sound design (bg music and sfx)
-- [ ] Retro Graphics
-- [ ] Map View Functionality
+- [x] Sound design (bg music and sfx)
+- [x] Retro Graphics
+- [x] Map View Functionality
 
 ### Progress
-18 / 20 (90% Done)
+21 / 21 (100% Done)
