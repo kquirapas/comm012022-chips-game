@@ -444,9 +444,9 @@ def checkNextTile(pPlayer, pMap, pMapList, pDir, pOverlay, pSfx):
             pPlayer.removeItem(YELLOWKEY)
             return True
         elif next_tile == CHIPDOOR:
-            pSfx.playSound("unlockchip")
-
             if pMap.chips == pPlayer.chips:
+                pSfx.playSound("unlockchip")
+
                 return True
 
         return False
@@ -1036,6 +1036,7 @@ class Sfx:
         self.volume = pVol
         for k, v in self.sounds.items():
             v.set_volume(self.volume)
+
 
 
 if __name__ == "__main__":
